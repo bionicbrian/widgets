@@ -28,6 +28,13 @@
  :filtered-widgets
  (fn [_ _]
    [(re-frame/subscribe [:widgets])
-    (re-frame/subscribe [:active-filter])])
- (fn [[widgets active-filter]]
-   (filter (:fn active-filter) widgets)))
+    (re-frame/subscribe [:active-filter-id])
+    (re-frame/subscribe [:filters])])
+ (fn [[widgets active-filter-id filters]]
+   (let [active-filter (get filters active-filter-id)
+         filter-fn (:fn active-filter)]
+     (if (not (nil? filter-fn))
+       (do
+         (.log js/console "gonna run the filter fn")
+         (filter filter-fn widgets))
+       widgets))))

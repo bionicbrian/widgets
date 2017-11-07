@@ -4,5 +4,10 @@
 
 (re-frame/reg-event-db
  :initialize-db
- (fn  [_ _]
+ (fn [_ _]
    db/default-db))
+
+(re-frame/reg-event-db
+ :set-active-filter
+ (fn [db [_ filter-id]]
+   (assoc db :active-filter-id filter-id)))
