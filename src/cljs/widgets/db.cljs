@@ -45,14 +45,22 @@
      :thumbnail "cogswell-cogs.png"
      :description "Cogswell makes the best cogs in the galaxy. Settle for nothing less."}
    }
+
    :active-filter-id nil
+
    :filters
    {:f50ce205-674f-4f47-bbc2-6002367c1509
     {:id :f50ce205-674f-4f47-bbc2-6002367c1509
      :fn (fn [[id widget]] (> (:price widget) 5.0))
      :name "More than 5 bucks"}
+
     :85a76eb8-4986-4012-913d-4f7a7110f436
     {:id :85a76eb8-4986-4012-913d-4f7a7110f436
      :fn (fn [[id widget]] (<= (:price widget) 5.0))
-     :name "Less than or equal to 5 bucks"}}
+     :name "5 bucks or less"}
+
+    :95a76eb8-4986-4012-913d-4f7a7110f436
+    {:id :95a76eb8-4986-4012-913d-4f7a7110f436
+     :fn (fn [[id widget]] (some #(= "expert" %) (:tags widget)))
+     :name "Expert level"}}
   })
